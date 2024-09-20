@@ -1,5 +1,0 @@
-    /frontend       ← Reactフロントエンド
-        /src        ← Reactのソースコード (コンポーネントやスタイル)
-        /public     ← Reactの静的ファイル
-        Dockerfile  ← React用のDockerfile
-    docker-compose.yml  ← 全体のDocker構成
