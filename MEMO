@@ -3,3 +3,18 @@
         /public     ← Reactの静的ファイル
         Dockerfile  ← React用のDockerfile
     docker-compose.yml  ← 全体のDocker構成
+
+
+
+    # 開発用のDockerfile.devでビルド
+docker build -f Dockerfile.dev -t my-react-app-dev .
+
+# 本番用のDockerfile.prodでビルド
+docker build -f Dockerfile.prod -t my-react-app-prod .
+
+
+# 開発環境用のdocker-compose.dev.ymlを使用してコンテナを起動
+docker-compose -f docker-compose.dev.yml up
+
+# 本番環境用のdocker-compose.prod.ymlを使用してコンテナを起動
+docker-compose -f docker-compose.prod.yml up
