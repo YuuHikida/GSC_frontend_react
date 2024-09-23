@@ -18,3 +18,10 @@ docker-compose -f docker-compose.dev.yml up
 
 # 本番環境用のdocker-compose.prod.ymlを使用してコンテナを起動
 docker-compose -f docker-compose.prod.yml up
+
+
+
+# JS構文学習
+useEffect(() => {
+  // 実行したい副作用
+}, [依存する変数]); //初回時は空配列を渡すことで1回のみ実行

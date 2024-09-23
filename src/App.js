@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import React,{ useState,useEffect} from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to なんで変わらなん？
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function App(){
+  // API取得データ
+  const[data, setData] = useState(null);
+
+  // call API that roading page
+  useEffect(()=>{
+    // ページがロードされた時にAPIを呼び出す
+
+    fetch('http://localhost:8080')  // GoのAPIエンドポイント
+      .then((response) => response.json())
+      .then((jsonData) => setData(jsonData))
+      .catch((error) => console.error('Error fetching data:', error));
+  }, []);  // 空の配列を渡すことで、初回のみ実行される
+
+
 }
-
-export default App;
