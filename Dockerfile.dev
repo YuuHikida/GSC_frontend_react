@@ -1,4 +1,4 @@
-# 開発ステージのベースイメージを指定
+# Node.jsをベースイメージとして使用
 FROM node:16-alpine
 
 # 作業ディレクトリを作成
@@ -7,16 +7,16 @@ WORKDIR /app
 # 依存関係のインストールに必要なファイルを先にコピー
 COPY package.json package-lock.json ./
 
-# 依存関係をインストール (このステップはキャッシュされる)
+# 依存関係をインストール
 RUN npm install
 
-# 残りのソースコードをコピー (頻繁に変更される部分)
+# ソースコードをコピー
 COPY . .
 
 # 開発サーバーのポートを公開
 EXPOSE 3000
 
-# React開発サーバーを起動
+# Reactの開発サーバーを起動
 CMD ["npm", "start"]
 
 
