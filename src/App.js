@@ -8,7 +8,7 @@ function App(){
   useEffect(()=>{
     // ページがロードされた時にAPIを呼び出す
 
-    fetch('http://backend:8080')  // GoのAPIエンドポイント
+    fetch('http://localhost:8080/')  // GoのAPIエンドポイント
       .then((response) => response.json())
       .then((jsonData) => setData(jsonData))
       .catch((error) => console.error('Error fetching data:', error));
