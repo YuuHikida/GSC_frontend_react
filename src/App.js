@@ -4,12 +4,12 @@ function App(){
   // API取得データ
   const[data, setData] = useState(null);
 
-  // call API that roading page
+  // call API that roading page.
   useEffect(()=>{
     // ページがロードされた時にAPIを呼び出す
 
     fetch('http://localhost:8080/')  // GoのAPIエンドポイント
-      .then((response) => response.json())
+      .then((response) => response.json())// responseはResponseオブジェクト
       .then((jsonData) => setData(jsonData))
       .catch((error) => console.error('Error fetching data:', error));
   }, []);  // 空の配列を渡すことで、初回のみ実行される
