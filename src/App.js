@@ -14,7 +14,7 @@ function App(){
       .catch((error) => console.error('Error fetching data:', error));
   }, []);  // 空の配列を渡すことで、初回のみ実行される
 
-    // データがまだ取得されていない場合はローディング状態を表示
+    // データがまだ取得されていない場合はローディング状態を表示 a
     if (!data) {
       return <div>Loading...</div>;
     }
