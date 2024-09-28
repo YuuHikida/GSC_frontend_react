@@ -25,3 +25,18 @@ docker-compose -f docker-compose.prod.yml up
 useEffect(() => {
   // 実行したい副作用
 }, [依存する変数]); //初回時は空配列を渡すことで1回のみ実行
+
+
+src/
+├── api/
+│   ├── rootApi.js  // '/' エンドポイント用API呼び出し関数
+│   ├── userApi.js  // '/api' エンドポイント用API呼び出し関数
+│   └── otherApi.js // その他のエンドポイント用API呼び出し関数
+│
+├── components/     // 表示コンポーネント
+│   ├── RootInfo.js
+│   ├── UserInfo.js
+│   └── OtherInfo.js
+│
+├── App.js
+└── index.js
