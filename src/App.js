@@ -13,7 +13,8 @@ useFetchに第一級オブジェクト（関数)を渡す
 function App() {
   const { data: rootData, loading: rootLoading, error: rootError } = useFetch(fetchRootData);
   const { data: userData, loading: userLoading, error: userError } = useFetch(fetchUserData);
-
+  console.log("rootError:", rootError); 
+  console.log("userError:", userError);
   if (rootLoading || userLoading) return <div>Loading...</div>;
   if (rootError || userError) return <div>Error loading data</div>;
 

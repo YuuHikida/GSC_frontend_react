@@ -11,6 +11,7 @@ export const useFetch = (apiFunc) => {
     const fetchData = async () => {
       try {
         const result = await apiFunc();
+        console.log("Fetched data:", result);  // デバッグ用に追加
         setData(result);
       } catch (err) {
         setError(err);
