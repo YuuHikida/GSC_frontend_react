@@ -5,6 +5,11 @@ import { fetchUserData } from './api/userApi';
 import RootInfo from './components/RootInfo';
 import UserInfo from './components/UserInfo';
 
+/*
+useFetchの流れ
+useFetchに第一級オブジェクト（関数)を渡す
+これによりuseFetchで関数を呼び出せる
+*/
 function App() {
   const { data: rootData, loading: rootLoading, error: rootError } = useFetch(fetchRootData);
   const { data: userData, loading: userLoading, error: userError } = useFetch(fetchUserData);
