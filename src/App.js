@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { useFetch } from './hooks/usefetch';
 import { fetchRootData } from './api/rootApi';
 import { fetchUserData } from './api/userApi';
@@ -10,23 +11,56 @@ useFetchの流れ
 useFetchに第一級オブジェクト（関数)を渡す
 これによりuseFetchで関数を呼び出せる
 */
-function App() {
+
+// Homeコンポーネント ("/" ルートに表示)
+function Home() {
   const { data: rootData, loading: rootLoading, error: rootError } = useFetch(fetchRootData);
-  const { data: userData, loading: userLoading, error: userError } = useFetch(fetchUserData);
-  console.log("rootError:", rootError); 
-  console.log("userError:", userError);
-  if (rootLoading || userLoading) return <div>Loading...</div>;
-  if (rootError || userError) return <div>Error loading data</div>;
+
+  if (rootLoading) return <div>Loading...</div>;
+  if (rootError) return <div>Error loading data</div>;
 
   return (
     <div>
+      <h1>ホーム画面</h1>
       <RootInfo data={rootData} />
-      <UserInfo data={userData} />
+      {/* ユーザー情報ページへのリンク */}
+      <Link to="/user">ユーザー情報を見る</Link>
     </div>
   );
 }
 
+// UserPageコンポーネント ("/user" ルートに表示)
+function UserPage() {
+  const { data: userData, loading: userLoading, error: userError } = useFetch(fetchUserData);
+
+  if (userLoading) return <div>Loading...</div>;
+  if (userError) return <div>Error loading data</div>;
+
+  return (
+    <div>
+      <h1>ユーザー情報</h1>
+      <UserInfo data={userData} />
+      {/* ホームページへのリンク */}
+      <Link to="/">ホームに戻る</Link>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        {/* "/" ルートにはHomeコンポーネントを表示 */}
+        <Route path="/" element={<Home />} />
+        {/* "/user" ルートにはUserPageコンポーネントを表示 */}
+        <Route path="/user" element={<UserPage />} />
+      </Routes>
+    </Router>
+  );
+}
+
 export default App;
+
 
 //以下bk
 
