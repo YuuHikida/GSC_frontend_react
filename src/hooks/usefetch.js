@@ -3,6 +3,11 @@
 import { useState, useEffect } from 'react';
 
 export const useFetch = (apiFunc) => {
+  /*
+  useState は値を保存する変数と、それを変更する関数を提供し、
+  その変更関数を利用して値を変えたら、
+  その値に依存する部分だけを再レンダリングしてブラウザに再計算して表示する。
+  */
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
