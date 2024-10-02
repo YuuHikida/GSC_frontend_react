@@ -5,8 +5,22 @@ function RegisterForm() {
   const [formData, setFormData] = useState({
     git_name: '',
     mail: '',
-    time: ''
+    time: '00:00'
   });
+
+
+  // 15分単位の時間を生成する関数
+  const generateTimeOptions = () => {
+    const times = [];
+    for (let hour = 0; hour < 24; hour++) {
+      for (let minute = 0; minute < 60; minute += 15) {
+        const formattedHour = String(hour).padStart(2, '0');
+        const formattedMinute = String(minute).padStart(2, '0');
+        times.push(`${formattedHour}:${formattedMinute}`);
+      }
+    }
+    return times;
+  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -43,13 +57,16 @@ function RegisterForm() {
         onChange={handleChange}
         placeholder="メールアドレス"
       />
-      <input
-        type="time"
-        name="time"
-        value={formData.time}
-        onChange={handleChange}
-        placeholder="時間"
-      />
+
+     {/* 時間選択（15分単位） */}
+     <select name="time" value={formData.time} onChange={handleChange}>
+        {generateTimeOptions().map((time) => (
+          <option key={time} value={time}>
+            {time}
+          </option>
+        ))}
+      </select>
+
       <button type="submit">登録</button>
     </form>
   );

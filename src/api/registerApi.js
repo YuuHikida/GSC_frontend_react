@@ -10,6 +10,8 @@ export const postRegisterData = async (formData) => {
         },
         body: JSON.stringify(formData),  // フォームデータをJSON形式に変換して送信
       });
+      // 確認
+      console.log(JSON.stringify(formData))
   
       // レスポンスが正常かチェック
       if (!response.ok) {

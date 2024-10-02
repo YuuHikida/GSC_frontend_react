@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { useFetch } from './hooks/usefetch';
-import { fetchRootData } from './api/rootApi';
 import { fetchUserData } from './api/userApi';
 import { Home } from './components/RootInfo';
 import UserInfo from './components/UserInfo';
