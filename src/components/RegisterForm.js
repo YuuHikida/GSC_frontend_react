@@ -64,3 +64,25 @@ function RegisterForm() {
 }
 
 export default RegisterForm;
+
+/*
+イメージ図
+[RegisterForm]
+  ├── state: formData
+  │     ├── git_name
+  │     ├── mail
+  │     ├── hour
+  │     └── minute
+  ├── function: handleChange()
+  └── renders:
+      ├── <input name="git_name" ... />
+      ├── <input name="mail" ... />
+      └── <TimeSelector formData={formData} handleChange={handleChange} />
+
+[TimeSelector]
+  ├── props: formData, handleChange
+  └── renders:
+      ├── <select name="hour" value={formData.hour} onChange={handleChange}>
+      └── <select name="minute" value={formData.minute} onChange={handleChange}>
+
+*/
