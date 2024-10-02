@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { postRegisterData } from '../api/registerApi';
+import TimeSelector from'./TimeSelector';
+
 
 function RegisterForm() {
   // 初期化
@@ -12,10 +14,15 @@ function RegisterForm() {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
+    
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
+    /*
+    console.log(event.target)の内容は以下↓
+    <input type="text" name="git_name" placeholder="Git 名前" value="てすと"> 
+    */
   };
 
   const handleSubmit = async (event) => {
@@ -36,8 +43,6 @@ function RegisterForm() {
       console.error('登録失敗:', error);
     }
   };
-
-
 
   return (
     <form onSubmit={handleSubmit}>
