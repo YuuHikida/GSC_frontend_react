@@ -5,22 +5,9 @@ function RegisterForm() {
   const [formData, setFormData] = useState({
     git_name: '',
     mail: '',
-    time: '00:00'
+    hour: '00',  // 時間の初期値
+    minute: '00',  // 分の初期値
   });
-
-
-  // 15分単位の時間を生成する関数
-  const generateTimeOptions = () => {
-    const times = [];
-    for (let hour = 0; hour < 24; hour++) {
-      for (let minute = 0; minute < 60; minute += 15) {
-        const formattedHour = String(hour).padStart(2, '0');
-        const formattedMinute = String(minute).padStart(2, '0');
-        times.push(`${formattedHour}:${formattedMinute}`);
-      }
-    }
-    return times;
-  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -32,13 +19,36 @@ function RegisterForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
+
+    // 時間と分を組み合わせた "HH:MM" の形式で送信する
+    const time = `${formData.hour}:${formData.minute}`;
+    const dataToSend = {
+      git_name: formData.git_name,
+      mail: formData.mail,
+      time: time,
+    };
+
     try {
-      const response = await postRegisterData(formData);
+      const response = await postRegisterData(dataToSend);
       console.log('登録成功:', response);
     } catch (error) {
       console.error('登録失敗:', error);
     }
+  };
+
+  // 時間選択肢（0〜12）
+  const generateHourOptions = () => {
+    const hours = [];
+    for (let hour = 0; hour <= 12; hour++) {
+      const formattedHour = String(hour).padStart(2, '0');  // 2桁にする
+      hours.push(formattedHour);
+    }
+    return hours;
+  };
+
+  // 分選択肢（0, 15, 30）
+  const generateMinuteOptions = () => {
+    return ['00', '15', '30'];  // 分はこの3つのみ
   };
 
   return (
@@ -58,11 +68,20 @@ function RegisterForm() {
         placeholder="メールアドレス"
       />
 
-     {/* 時間選択（15分単位） */}
-     <select name="time" value={formData.time} onChange={handleChange}>
-        {generateTimeOptions().map((time) => (
-          <option key={time} value={time}>
-            {time}
+      {/* 時間選択（0〜12時） */}
+      <select name="hour" value={formData.hour} onChange={handleChange}>
+        {generateHourOptions().map((hour) => (
+          <option key={hour} value={hour}>
+            {hour}
+          </option>
+        ))}
+      </select>
+
+      {/* 分選択（0, 15, 30） */}
+      <select name="minute" value={formData.minute} onChange={handleChange}>
+        {generateMinuteOptions().map((minute) => (
+          <option key={minute} value={minute}>
+            {minute}
           </option>
         ))}
       </select>
