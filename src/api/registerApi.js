@@ -11,7 +11,7 @@ export const postRegisterData = async (formData) => {
         body: JSON.stringify(formData),  // フォームデータをJSON形式に変換して送信
       });
       // 確認
-      console.log(JSON.stringify(formData))
+      console.log(JSON.stringify(formData))//{"git_name":"hhh","mail":"www@aa","time":"01:15"}
   
       // レスポンスが正常かチェック
       if (!response.ok) {
@@ -19,8 +19,12 @@ export const postRegisterData = async (formData) => {
       }
   
       // レスポンスをJSON形式に変換して返す
-      const jsonData = await response.json();
-      return jsonData;
+      const textData = await response.text();
+      /* 
+        const jsonData = await response.json();
+        return jsonData;
+      */
+      return textData;
     } catch (error) {
       console.error('Error posting register data:', error);
       throw error;  // エラーを投げて上位でハンドリングできるようにする

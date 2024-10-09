@@ -14,7 +14,6 @@ function RegisterForm() {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -38,7 +37,7 @@ function RegisterForm() {
 
     try {
       const response = await postRegisterData(dataToSend);
-      console.log('登録成功:', response);
+      console.log('照会状態->:', response);
     } catch (error) {
       console.error('登録失敗:', error);
     }
