@@ -5,19 +5,26 @@ import { fetchRootData } from '../api/rootApi';
 
   
 const Home = () => {
+  const handleGoogleLogin = () => {
+    window.location.href = "http://localhost:8080/oauth2/authorization/google";
+  };
+
   return (
     <div>
       <h1>ここにGCSの説明</h1>
-      <a href="/oauth2/authorization/google">
-        <button style={{ padding: '10px 20px', fontSize: '16px', cursor: 'pointer' }}>
-          Login with Google
-        </button>
-      </a>
+      <button 
+        onClick={handleGoogleLogin}
+        style={{ padding: '10px 20px', fontSize: '16px', cursor: 'pointer' }}
+      >
+        Login with Google
+      </button>
     </div>
   );
 };
 
 export default Home;
+
+
 
 
 
