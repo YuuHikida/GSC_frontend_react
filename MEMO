@@ -6,8 +6,10 @@
 
 
 
-    # 開発用のDockerfile.devでビルド
+# 1:開発用のDockerfile.devでimageをビルド
 docker build -f Dockerfile.dev -t my-react-app-dev .
+# 2:イメージからコンテナを起動
+docker run -p 3000:3000 my-react-app-dev
 
 # 本番用のDockerfile.prodでビルド
 docker build -f Dockerfile.prod -t my-react-app-prod .

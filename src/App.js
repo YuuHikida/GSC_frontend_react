@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { useFetch } from './hooks/usefetch';
 import { fetchUserData } from './api/userApi';
-import { Home } from './components/RootInfo';
+import  Root  from './components/RootInfo';
 import UserInfo from './components/UserInfo';
 import RegisterForm from './components/RegisterForm';
 
@@ -29,15 +29,18 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Root />} />
         <Route path="/user" element={<UserPage />} />
         <Route path="/register" element={<RegisterForm />} />
+        {/* <Route path="/home" element={<Home />} /> */}
       </Routes>
     </Router>
   );
 }
 
  export default App;
+
+
 // function App() {
 //   return (
 //     <Router>
