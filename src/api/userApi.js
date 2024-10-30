@@ -2,7 +2,7 @@
 概要:ユーザー(mongoDBAtlas)の全件取得
 */ 
 
-export const fetchUserData = async () => {
+export const AllGetUserData = async () => {
     try {
       const response = await fetch('http://localhost:8080/all');
       if (!response.ok) {
