@@ -1,7 +1,7 @@
 import React from 'react';
 
   
-const Home = () => {
+const Root = () => {
   const handleGoogleLogin = () => {
     window.location.href = "http://localhost:8080/oauth2/authorization/google";
   };
@@ -19,7 +19,7 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Root;
 
 
 
