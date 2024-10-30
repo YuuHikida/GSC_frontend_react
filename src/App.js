@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { useFetch } from './hooks/usefetch';
-import { fetchUserData } from './api/userApi';
+import { AllGetUserData,RegisterData } from './api/userApi';
 import  Root  from './components/RootInfo';
 import UserInfo from './components/UserInfo';
 import RegisterForm from './components/RegisterForm';
@@ -10,7 +10,7 @@ import RegisterForm from './components/RegisterForm';
 
 // UserPageコンポーネント ("/user" ルートに表示)
 function UserPage() {
-  const { data: userData, loading: userLoading, error: userError } = useFetch(fetchUserData);
+  const { data: userData, loading: userLoading, error: userError } = useFetch(AllGetUserData);
 
   if (userLoading) return <div>Loading...</div>;
   if (userError) return <div>Error loading data</div>;
