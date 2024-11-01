@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { postRegisterData } from '../api/registerApi';
+import { RegisterData } from '../api/userApi';
 import TimeSelector from'./TimeSelector';
 
 
@@ -36,7 +36,7 @@ function RegisterForm() {
     };
 
     try {
-      const response = await postRegisterData(dataToSend);
+      const response = await RegisterData(dataToSend);
       console.log('照会状態->:', response);
     } catch (error) {
       console.error('登録失敗:', error);

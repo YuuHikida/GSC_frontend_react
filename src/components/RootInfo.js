@@ -8,7 +8,7 @@ const Root = () => {
 
   return (
     <div>
-      <h1>ここにGCSの説明</h1>
+      <h1>ここにGCSの説明いれる</h1>
       <button 
         onClick={handleGoogleLogin}
         style={{ padding: '10px 20px', fontSize: '16px', cursor: 'pointer' }}
