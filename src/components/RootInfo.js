@@ -1,25 +1,24 @@
 import React from 'react';
+import { GoogleLogin } from '@react-oauth/google';
 
-  
-const Root = () => {
-  const handleGoogleLogin = () => {
-    window.location.href = "http://localhost:8080/oauth2/authorization/google";
+const LoginButton = () => {
+  const handleSuccess = async (response) => {
+    const token = response.credential; // IDトークンを取得
+    // バックエンドにPOSTリクエストでIDトークンを送信
+    await fetch("http://localhost:8080/api/auth", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ token })
+    });
   };
 
-  return (
-    <div>
-      <h1>ここにGCSの説明いれる</h1>
-      <button 
-        onClick={handleGoogleLogin}
-        style={{ padding: '10px 20px', fontSize: '16px', cursor: 'pointer' }}
-      >
-        Login with Google
-      </button>
-    </div>
-  );
+  return <GoogleLogin onSuccess={handleSuccess} />;
 };
 
-export default Root;
+export default LoginButton;
+
 
 
 
