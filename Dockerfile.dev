@@ -12,6 +12,7 @@ RUN npm install
 
 # ソースコードをコピー
 COPY . .
+COPY .env .env
 
 # 開発サーバーのポートを公開
 EXPOSE 3000

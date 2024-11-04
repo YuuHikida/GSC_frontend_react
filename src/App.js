@@ -1,11 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { useFetch } from './hooks/usefetch';
-import { AllGetUserData ,RegisterData } from './api/userApi';
+import { AllGetUserData} from './api/userApi';
 import  Root  from './components/RootInfo';
 import UserInfo from './components/UserInfo';
 import RegisterForm from './components/RegisterForm';
 import Home from './components/Home';
+import LoginButton from './components/LoginButton';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 
 
@@ -27,16 +29,23 @@ function UserPage() {
 }
 
 function App() {
+  console.log("Google Client ID:", process.env.REACT_APP_GOOGLE_CLIENT_ID);
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Root />} />
-        <Route path="/loginSuccess" element={<Home />} />
-        <Route path="/user" element={<UserPage />} />
-        <Route path="/register" element={<RegisterForm />} />
-        {/* <Route path="/home" element={<Home />} /> */}
-      </Routes>
-    </Router>
+    // ここでGoogleOAuthProviderを使い、クライアントIDを設定
+    <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
+      <Router>
+        <div className="App">
+          {/* 必要であれば、どのページでも<LoginButton />を使用可能 */}
+          <Routes>
+            <Route path="/" element={<LoginButton  />} />
+            <Route path="/loginSuccess" element={<Home />} />
+            <Route path="/user" element={<UserPage />} />
+            <Route path="/register" element={<RegisterForm />} />
+          </Routes>
+        </div>
+      </Router>
+    </GoogleOAuthProvider>
   );
 }
 
