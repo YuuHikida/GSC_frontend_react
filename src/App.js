@@ -29,16 +29,17 @@ function UserPage() {
 }
 
 function App() {
-  console.log("Google Client ID:", process.env.REACT_APP_GOOGLE_CLIENT_ID);
-
   return (
-    // ここでGoogleOAuthProviderを使い、クライアントIDを設定
+    /* 
+    ここでGoogleOAuthProviderを使い、クライアントIDを設定
+    囲んだルート全てにClientId
+    */
     <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
       <Router>
         <div className="App">
           {/* 必要であれば、どのページでも<LoginButton />を使用可能 */}
           <Routes>
-            <Route path="/" element={<LoginButton  />} />
+            <Route path="/" element={<LoginButton />} />
             <Route path="/loginSuccess" element={<Home />} />
             <Route path="/user" element={<UserPage />} />
             <Route path="/register" element={<RegisterForm />} />
