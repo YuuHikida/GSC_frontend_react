@@ -1,7 +1,7 @@
 // src/api/authApi.jsx
 export const authenticateUser = async (token) => { //async　関数の非同期関数宣言
     try {
-      const response = await fetch('http://your-backend-url/api/auth', { 
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/`, { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
