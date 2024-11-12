@@ -1,5 +1,6 @@
 import { GoogleLogin } from '@react-oauth/google';
-import {authenticateUser} from './api/authApi';
+import {authenticateUser} from '../api/authApi';
+import { useState } from 'react';
 
 const LoginButton = () => {
     const[userInfo,setUserInfo] = useState(null); //UserInfo管理
