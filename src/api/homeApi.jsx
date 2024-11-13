@@ -1,6 +1,6 @@
 export const getUserHomeInfo = async()=>{
     try{
-        const response = await fetch('http://localhost:8080/loginSuccess',{
+        const response = await fetch('https://4cf5-2404-7a81-1840-8a00-f5ff-fc46-8bf8-b302.ngrok-free.app ',{
             method:'GET',
             credentials:'include',
             headers:{
