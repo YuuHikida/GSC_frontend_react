@@ -2,7 +2,7 @@
 export const authenticateUser = async (token) => { //async　関数の非同期関数宣言
     try {
       console.log(process.env.REACT_APP_API_URL);
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/`, { 
+      const response = await fetch(`${process.env.REACT_APP_API_URL}`, { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
