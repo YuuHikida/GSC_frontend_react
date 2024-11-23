@@ -6,11 +6,11 @@ const LoginButton = () => {
 
   const handleSuccess = async (response) => {
     const token = response.credential; // JWTトークン
-    console.log("取得したJWT:", token); // dbg用、後で消す
+    console.log("(フロントエンド9取得したJWT:", token); // dbg用、後で消す
 
     try {
       // JWTをバックエンドに送信
-      const backendResponse = await fetch("http://localhost:8080/receiveJwt", {
+      const backendResponse = await fetch("http://localhost:8080/auth/receiveJwt", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -22,7 +22,7 @@ const LoginButton = () => {
       console.log("バックエンドのレスポンス:", result);
 
       // 必要ならレスポンスからユーザー情報を設定
-      setUserInfo({ userName: "Sample User", email: "sample@example.com" }); // デモ用
+      //setUserInfo({ userName: "Sample User", email: "sample@example.com" }); // デモ用
     } catch (error) {
       console.error("バックエンド送信エラー:", error);
     }
