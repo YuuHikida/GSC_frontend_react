@@ -1,9 +1,12 @@
 import { GoogleLogin } from '@react-oauth/google';
-import { useState } from 'react';
+import { useState,useCallback } from 'react';
 import { authenticateUser } from '../api/authApi.jsx';
 import '../css/spinner.css'; // スピナーのCSSをインポート
 import { auth } from './firebase.js';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { FirebaseError } from "firebase/app"; // FirebaseErrorをインポート
+
+
 
 const LoginButton = () => {
   const [userInfo, setUserInfo] = useState(null); // ユーザー情報管理
@@ -26,28 +29,34 @@ const LoginButton = () => {
       setIsLoading(false); // ローディング終了
     }
   };
-  // Furebase Refacting
-  const auth = getAuth();
-  const provider = new GoogleAuthProvider(); // ここでproviderを宣言
 
-  signInWithPopup(auth, provider).then((result) => {
-    // This gives you a Google Access Token. You can use it to access the Google API.
-    const credential = GoogleAuthProvider.credentialFromResult(result);
-    const token = credential.accessToken;
-    // The signed-in user info.
-    const user = result.user;
-    // IdP data available using getAdditionalUserInfo(result)
-    // ...
-  }).catch((error) => {
-    // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // The email of the user's account used.
-    const email = error.customData.email;
-    // The AuthCredential type that was used.
-    const credential = GoogleAuthProvider.credentialFromError(error);
-    // ...
-  });
+  /* Furebase Refacting */
+
+  // GoogleAuthProviderのインスタンスを作成
+  const provider = new GoogleAuthProvider();
+  
+  const signInWithGoogle = useCallback(async () => {
+    try {
+
+      const result = await signInWithPopup(auth, provider)
+
+      // ログイン成功時のユーザー情報
+      const user = result.user;
+      console.log("Logged in user:", user);
+
+      // Googleのアクセストークンなども取得可能
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+
+      console.log("token is =" + token);
+      return { success: true, message: '' }
+    } catch (e) {
+      if (e instanceof FirebaseError) {
+        console.log(e)
+      }
+      return { success: false, message: 'エラーが発生しました' }
+    }
+  }, [provider])
 
 
   if (isLoading) {
@@ -71,10 +80,11 @@ const LoginButton = () => {
   return (
     <div style={{ textAlign: 'center' }}>
       <p>ログインしてください</p>
-      <GoogleLogin
+      {/* <GoogleLogin
         onSuccess={handleSuccess}
         onFailure={(error) => console.error("Googleログインエラー:", error)}
-      />
+      /> */}
+      <button onClick={signInWithGoogle}>ここにGoogole認証ボタンを設置!!!</button>
       <p>このサイトを利用するにはGoogleアカウントでのログインが必要です。</p>
     </div>
   );
