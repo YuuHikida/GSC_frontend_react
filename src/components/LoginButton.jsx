@@ -31,24 +31,28 @@ const LoginButton = () => {
   };
 
   /* Furebase Refacting */
-//test
   // GoogleAuthProviderのインスタンスを作成
   const provider = new GoogleAuthProvider();
   
   const signInWithGoogle = useCallback(async () => {
     try {
 
+      /*signInWithPopup(auth: Auth, provider: AuthProvider, resolver?: PopupRedirectResolver): Promise<UserCredential>
+        auth:Auth ...FirebaseAuthインスタンス
+        provider:AuthProvider Ouah系Provider
+      */
       const result = await signInWithPopup(auth, provider)
 
       // ログイン成功時のユーザー情報
       const user = result.user;
-      console.log("Logged in user:", user);
+      // console.log("Logged in user:", user);
+      const idToken = await user.getIdToken();
+      console.log("idToken ="+idToken);
 
-      // Googleのアクセストークンなども取得可能
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
+      // 以下はGoogle Oauthアクセストークン(googleドライブやGoogleカレンダーへのアクセスを許可する)
+      // const credential = GoogleAuthProvider.credentialFromResult(result);
+      // const token = credential.accessToken;
 
-      console.log("token is =" + token);
       return { success: true, message: '' }
     } catch (e) {
       if (e instanceof FirebaseError) {
