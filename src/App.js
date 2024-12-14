@@ -34,7 +34,6 @@ function App() {
     ここでGoogleOAuthProviderを使い、クライアントIDを設定
     囲んだルート全てにClientId
     */
-    <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
       <Router>
         <div className="App">
           {/* 必要であれば、どのページでも<LoginButton />を使用可能 */}
@@ -46,7 +45,6 @@ function App() {
           </Routes>
         </div>
       </Router>
-    </GoogleOAuthProvider>
   );
 }
 

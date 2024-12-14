@@ -25,3 +25,7 @@ export const authenticateUser = async (token) => { //async　関数の非同期�
     }
   };
   
+
+  /**
+   * 
+   */

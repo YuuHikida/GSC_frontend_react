@@ -61,6 +61,29 @@ import { FirebaseError } from "firebase/app"; // FirebaseErrorをインポート
       }
     }, [provider])
 
+    //fetch test用
+    const testFetch= useCallback(async()=>{
+      fetch('https://jsonplaceholder.typicode.com/posts',{
+        method:'POST',
+        body:JSON.stringify({
+          title:'foo',
+          body:'bar',
+          userId:1,
+        }),
+        headers:{
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      })
+      .then((res)=>{
+        console.log(res);
+        return res.json();
+      })
+      .then((data)=>{
+        console.log(data);
+        setAnsMes(data);
+      });
+    },[]);
+
     if(ansMes)
     {
       return (
@@ -69,17 +92,20 @@ import { FirebaseError } from "firebase/app"; // FirebaseErrorをインポート
         </>
       )
     }
-  return (
-    <div style={{ textAlign: 'center' }}>
-      <p>ログインしてください</p>
-      {/* <GoogleLogin
-        onSuccess={handleSuccess}
-        onFailure={(error) => console.error("Googleログインエラー:", error)}
-      /> */}
-      <button onClick={signInWithGoogle}>ここにGoogole認証ボタンを設置!!!</button>
-      <p>このサイトを利用するにはGoogleアカウントでのログインが必要です。</p>
-    </div>
-  );
+
+
+    return (
+      <div style={{ textAlign: 'center' }}>
+        <p>ログインしてください</p>
+        {/* <GoogleLogin
+          onSuccess={handleSuccess}
+          onFailure={(error) => console.error("Googleログインエラー:", error)}
+        /> */}
+        <button onClick={signInWithGoogle}>ここにGoogole認証ボタンを設置!!!</button>
+        <button onClick={testFetch}>fetchtest用</button>
+        <p>このサイトを利用するにはGoogleアカウントでのログインが必要です。</p>
+      </div>
+    );
 };
 
 export default LoginButtonGoogle;
