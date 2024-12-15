@@ -84,6 +84,20 @@ import { FirebaseError } from "firebase/app"; // FirebaseErrorをインポート
       });
     },[]);
 
+    //TestGet
+    async function getData(){
+      const url = `${process.env.REACT_APP_API_URL}/auth/testAuthenticate`;
+      try{
+        const response = await fetch(url);
+        if(!response.ok){
+          throw new Error('レスポンスステータス:${response.status}');
+        }
+      } catch (error) {
+        console.error("APIエラー:", error);
+        throw error; // コンポーネントでエラー処理を行えるように投げる
+      }
+    }
+
     if(ansMes)
     {
       return (
@@ -103,6 +117,7 @@ import { FirebaseError } from "firebase/app"; // FirebaseErrorをインポート
         /> */}
         <button onClick={signInWithGoogle}>ここにGoogole認証ボタンを設置!!!</button>
         <button onClick={testFetch}>fetchtest用</button>
+        <button onClick={getData}>fetchtest用</button>
         <p>このサイトを利用するにはGoogleアカウントでのログインが必要です。</p>
       </div>
     );
