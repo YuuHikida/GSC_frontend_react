@@ -117,7 +117,7 @@ import { FirebaseError } from "firebase/app"; // FirebaseErrorをインポート
         /> */}
         <button onClick={signInWithGoogle}>ここにGoogole認証ボタンを設置!!!</button>
         <button onClick={testFetch}>fetchtest用</button>
-        <button onClick={getData}>getData用</button>
+        {/* <button onClick={getData}>getData用</button> */}
         <p>このサイトを利用するにはGoogleアカウントでのログインが必要です。</p>
       </div>
     );
