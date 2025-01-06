@@ -5,31 +5,6 @@ import { auth } from './firebase.js';
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { FirebaseError } from "firebase/app"; // FirebaseErrorをインポート
 
-
-
-// const LoginButton = () => {
-//   const [userInfo, setUserInfo] = useState(null); // ユーザー情報管理
-//   const [isLoading, setIsLoading] = useState(false); // ローディング状態管理
-
-//   const handleSuccess = async (response) => {
-//     const token = response.credential; // JWTトークン
-//     console.log("(フロントエンド)取得したJWT:", token);
-
-//     setIsLoading(true); // ローディング開始
-
-//     try {
-//       const data = await authenticateUser(token); // バックエンドと通信
-//       console.log("バックエンドからの応答", data);
-
-//       setUserInfo(data); // ユーザー情報の設定
-//     } catch (error) {
-//       console.error("バックエンド送信エラー:", error);
-//     } finally {
-//       setIsLoading(false); // ローディング終了
-//     }
-//   };
-
-
   /* Furebase Refacting */
   
   function LoginButtonGoogle() {

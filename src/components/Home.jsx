@@ -7,7 +7,7 @@ const Home =() =>{
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getUserHomeInfo();
+      const data = await fetch(`${process.env.REACT_APP_API_URL}/auth/testAuthenticate`);
       if (data) {
         setUserInfo(data);
       }
