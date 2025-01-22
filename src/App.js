@@ -8,7 +8,7 @@ import RegisterForm from './components/RegisterForm';
 import Home from './components/Home';
 import LoginButton from './components/LoginButton';
 import { GoogleOAuthProvider } from '@react-oauth/google';
-
+import TestHome from './components/testHome';
 
 
 // UserPageコンポーネント ("/user" ルートに表示)
@@ -38,7 +38,7 @@ function App() {
         <div className="App">
           {/* 必要であれば、どのページでも<LoginButton />を使用可能 */}
           <Routes>
-            <Route path="/" element={<LoginButton />} />
+            <Route path="/" element={<TestHome/>} />
             <Route path="/loginSuccess" element={<Home />} />
             <Route path="/user" element={<UserPage />} />
             <Route path="/register" element={<RegisterForm />} />
