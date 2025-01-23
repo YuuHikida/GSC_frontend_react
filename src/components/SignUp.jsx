@@ -5,10 +5,11 @@ function SingUp(){
     const[message,setMessage] = useState('');
 
     const googleSignUp =useGoogleLogin({
-        onSuccess:async(response)=>{
-            // Googleから帰ってくる credential (ID Token)
-            const idToken = response.credential;
-            if(!idToken)
+        onSuccess:async(tokenResponse)=>{
+            console.log(tokenResponse);
+
+            const accessToken = tokenResponse.access_token;
+            if(!accessToken)
             {
                 setMessage('Google認証に失敗しました(credentialが空)');
                 return;
@@ -16,11 +17,11 @@ function SingUp(){
 
             try{
                 //Cokieを受け取るにはcredntials:'include'が必要
-                const res = await fetch('`${process.env.REACT_APP_API_URL}/auth/testAuthenticate`', {
+                const res = await fetch(`${process.env.REACT_APP_API_URL}/auth/testAuthenticate`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     credentials: 'include',
-                    body: JSON.stringify({ idToken }),
+                    body: JSON.stringify({ accessToken }),
                 });
 
             if(!res.ok)
